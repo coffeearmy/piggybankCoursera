@@ -3,5 +3,6 @@
 
     <string name="app_name">Piggybank</string>
     <string name="action_settings">Settings</string>
+    <string name="current_saves">current_saves</string>
 
 </resources>

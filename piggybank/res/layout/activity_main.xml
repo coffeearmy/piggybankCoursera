@@ -14,30 +14,22 @@
         android:layout_height="wrap_content" >
     </TextSwitcher>
 
-    <LinearLayout
+    <ImageButton
+        android:id="@+id/imgbtAddTransaction"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:src="@drawable/piggybank" />
 
-        <ImageButton
-            android:id="@+id/ibtnAddSaves"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:adjustViewBounds="true"
-            android:scaleType="center"
-            android:src="@android:drawable/ic_input_add" />
-
-        <ImageButton
-            android:id="@+id/ibtnMinusSaves"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@android:drawable/ic_delete" />
+    <LinearLayout
+        android:id="@+id/inputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
 
     </LinearLayout>
 
     <ListView
-        android:id="@+id/listView1"
+        android:id="@+id/lstTransaction"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
     </ListView>
