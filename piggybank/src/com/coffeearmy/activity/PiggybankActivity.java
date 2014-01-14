@@ -14,6 +14,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewStub;
@@ -32,8 +33,8 @@ public class PiggybankActivity extends ActionBarActivity {
   
 	private ListView transactionList;
 	private TextSwitcher txtSwitchSaves;
-	private ImageButton btnAddTransaction;
-	private ViewStub stub;
+	
+	
 	protected InputView inputViewHandler;
 	private TransactionsAndTotalHandler transactionsHandler;
 	private LinearLayout inputViewLayout;
@@ -66,8 +67,8 @@ public class PiggybankActivity extends ActionBarActivity {
 			public View makeView() {
 				TextView myText = new TextView(PiggybankActivity.this);
                 myText.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL);
-                myText.setTextSize(36);
-                myText.setTextColor(Color.BLACK);
+                myText.setTextSize(40);
+                myText.setTextColor(Color.WHITE);
                 return myText;				
 			}
 		});
@@ -84,22 +85,9 @@ public class PiggybankActivity extends ActionBarActivity {
         
         //Layout where the input will appear
         inputViewLayout = (LinearLayout) findViewById(R.id.inputLayout);
-        inputViewHandler = new InputView();
+        inputViewHandler = new InputView(this);
         
-        btnAddTransaction= (ImageButton) findViewById(R.id.imgbtAddTransaction);
-        btnAddTransaction.setOnClickListener(new OnClickListener() {
-			
-			public void onClick(View v) {
-				if(!inputViewHandler.isViewInflated()){
-				View inflated = getLayoutInflater().inflate(R.layout.input_transactions,null);
-				inputViewHandler.setInputView(inflated);
-				inputViewLayout.addView(inflated);
-				}
-				inputViewHandler.InputViewSetup();
-				inputViewHandler.setViewVisible();
-			}
-		});
-        
+               
         inputViewHandler.setEventListener(new OperationListener() {
 			
 			public void onOperationIsPerformed(boolean isAdd, double cuantity) {
@@ -131,6 +119,35 @@ public class PiggybankActivity extends ActionBarActivity {
 	// Inflate the menu; this adds items to the action bar if it is present.
 	getMenuInflater().inflate(R.menu.main, menu);
 	return true;
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+    	 switch (item.getItemId()) {
+         case R.id.action_operation:
+        	 	openAddOperationMenu();
+             return true;
+         default:
+             return super.onOptionsItemSelected(item);
+     }
+    	
+ }
+    private void openAddOperationMenu(){
+    	 if(!inputViewHandler.isViewInflated()){
+				View inflated = getLayoutInflater().inflate(R.layout.input_transactions,null);
+				inputViewHandler.setInputView(inflated);
+				inputViewLayout.addView(inflated);
+				}
+				inputViewHandler.InputViewSetup();
+				inputViewHandler.setViewVisible();
+    }
+    
+    @Override
+    public void onBackPressed() {
+    	if(inputViewHandler.isViewVisible())
+    		inputViewHandler.setViewGone();
+    	else
+    	super.onBackPressed();
     }
 
 }

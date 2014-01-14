@@ -1,4 +1,13 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:com.coffeearmy.piggybank="http://schemas.android.com/apk/res-auto" >
 
+    <item
+        android:id="@+id/action_operation"
+        android:icon="@drawable/piggybankwhite"
+        android:title="@string/menubar_title"
+        android:titleCondensed="@string/menubar_condensed"
+        android:visible="true"
+        com.coffeearmy.piggybank:showAsAction="ifRoom">
+    </item>
 
 </menu>

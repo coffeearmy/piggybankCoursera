@@ -2,23 +2,31 @@ package com.coffeearmy.activity;
 
 import com.coffeearmy.piggybank.R;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class InputView  {
 
 	private View inputView;
-	private ImageButton addButton;
-	private ImageButton minusButton;
+	private ImageView addButton;
+	private ImageView minusButton;
 	private EditText inputCuantity;
 	private Button acceptTransation;
 	private TextView signLabel;
 	private OperationListener mEventListener;
+	private Context c;
+	
+	public InputView(Context context) {
+		c=context;
+	}
 	
 	//With this we can comunicate with main Activity
 	
@@ -32,8 +40,8 @@ public class InputView  {
 
 	public void InputViewSetup() {
 		
-		addButton=(ImageButton) inputView.findViewById(R.id.ibtnAddSaves);
-		minusButton=(ImageButton) inputView.findViewById(R.id.ibtnMinusSaves);
+		addButton=(ImageView) inputView.findViewById(R.id.ibtnAddSaves);
+		minusButton=(ImageView) inputView.findViewById(R.id.ibtnMinusSaves);
 		inputCuantity=(EditText) inputView.findViewById(R.id.edtCuantity);
 		acceptTransation=(Button) inputView.findViewById(R.id.btnOKInputTransaction);
 		signLabel = (TextView) inputView.findViewById(R.id.txtVsign);
@@ -76,6 +84,9 @@ public class InputView  {
 	public boolean isViewInflated(){
 		return inputView!=null;
 	}
+	public boolean isViewVisible(){
+		return inputView.isShown();
+	}
 	
 	public void setInputView(View inputView) {
 		this.inputView = inputView;
@@ -97,11 +108,22 @@ public class InputView  {
 	}
 
 	public void setViewVisible() {
-		inputView.setVisibility(View.VISIBLE);		
+		inputView.setVisibility(View.VISIBLE);
+		animateView();
 	}
 
 	protected void setViewGone() {
 		inputView.setVisibility(View.GONE);		
+	}
+	
+
+	@SuppressLint("NewApi")
+	private void animateView(){
+		int currentapiVersion = android.os.Build.VERSION.SDK_INT;
+		if (currentapiVersion >= android.os.Build.VERSION_CODES.HONEYCOMB){
+			inputView.setAnimation(AnimationUtils.loadAnimation(c,R.anim.abc_slide_in_top));			
+			inputView.animate();
+		}
 	}
 
 }

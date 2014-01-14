@@ -2,23 +2,15 @@
     android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin" >
+    android:orientation="vertical" >
 
     <TextSwitcher
         android:id="@+id/txtSavesTotal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-    </TextSwitcher>
-
-    <ImageButton
-        android:id="@+id/imgbtAddTransaction"
-        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/piggybank" />
+        android:background="@color/bg_blue" >
+
+    </TextSwitcher>
 
     <LinearLayout
         android:id="@+id/inputLayout"

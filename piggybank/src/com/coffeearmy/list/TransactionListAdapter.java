@@ -3,7 +3,8 @@ package com.coffeearmy.list;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.R;
+import com.coffeearmy.piggybank.R;
+
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
@@ -55,9 +56,9 @@ public class TransactionListAdapter extends ArrayAdapter<String> {
 		if (!objects.isEmpty() && objects.get(position)!=null) {
 			holder.transaction.setText(objects.get(position));
 			if (objects.get(position).contains("+")) {
-				holder.transaction.setTextColor(Color.GREEN);
+				holder.transaction.setTextColor(mContext.getResources().getColor(R.color.Holo_green));
 			} else {
-				holder.transaction.setTextColor(Color.RED);
+				holder.transaction.setTextColor(mContext.getResources().getColor(R.color.Holo_red));
 			}
 		}
 		
